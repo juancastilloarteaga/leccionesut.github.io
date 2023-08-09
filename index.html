@@ -1,0 +1,56 @@
+<?prg
+#include "lib/tweb/tweb.ch" 
+
+   Local o, oWeb, oNav
+	//
+	Define Web oWeb Title 'TWeb' 			
+
+	   // estilos para datos de usuario
+		oWeb:AddCss( "files/css/style.css" )
+		
+		Nav oNav Id "nav" Title " MyApp" Logo "files/images/mini-mercury.png" Route "sample1" SideBar Of oWeb
+
+			Html SideBar Of oNav 							
+
+				<div class="profile">
+					<img class="img-fluid" src="files/images/cara1.webp">
+					<h3 class="name">John Kocinsky</h3>
+					<span class="country">New York, USA</span>								
+				</div>
+				
+				<div class="menu-items mybottom">
+					<div class="input-group ">
+					  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+					  <div class="input-group-append">
+						<button class="btn btn-outline-success" type="button">Cerrar sesión</button>
+					  </div>
+					</div>
+				</div>				
+		
+			EndText 								
+
+			Menu Group "Inventario" Of oNav
+
+				MenuItem "Browse simple" Route "browse" Of oNav
+				MenuItem "Line" Route "sample1" Of oNav
+
+				Menu "Tomas de inventario" Of oNav
+
+					MenuItem "Toma parcial" Route "sample1" Of oNav
+					MenuItem "Toma total" Icon '<i class="fa fa-search" aria-hidden="true"></i>' Route "sample1" Of oNav
+
+				EndMenu Of oNav 
+
+		Define Form o Id 'myform' Api 'myapi' On Init 'hello' Of oWeb							
+
+		o:lDessign := .F. 
+		o:lFluid := .F. 
+		o:cSizing := "SM" // LG/SM/  space(0)
+
+		Init Form o					
+
+
+		EndForm o	
+	
+	Init Web oWeb Return
+?>
